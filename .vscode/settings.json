@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "Render",
+            "database": "cse340cm_rus3",
+            "username": "cse340cm",
+            "connectString": "postgres://cse340cm:iTnVbYvp1UT3YcUSrNXhaM7SI3XgyTgD@dpg-che4f3jhp8ubgo2amtq0-a.ohio-postgres.render.com/cse340cm_rus3"
+        }
+    ]
+}

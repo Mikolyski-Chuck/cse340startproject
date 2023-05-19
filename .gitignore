@@ -14,3 +14,8 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# pnpm-lock.yaml should not be uploaded to the git repo.
+pnpm-lock.yaml
+
+README.md
