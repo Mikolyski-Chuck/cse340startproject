@@ -22,6 +22,7 @@ body {
 #wrapper {
   background-color: white;
 }
+
 h1 {
   font-size: 1.2em;
 }
@@ -188,7 +189,6 @@ header {
     width: 100%;
     margin: 0;     
     padding: 0;
-
   }
  
   body {
@@ -198,7 +198,6 @@ header {
     width: 100%;
     margin: 0;     
     padding: 0;
-    
   }
 
   nav ul li {
@@ -220,13 +219,13 @@ header {
     margin-bottom: 1em;
     margin-left: auto;
     margin-right: auto;
+    height: fit-content;
   }
 
   main {
     flex: auto;
     display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
+    flex-wrap: wrap; 
   }
 
   .vehicle-ad {
@@ -238,9 +237,11 @@ header {
   .vehicle-ad img {
     margin: 0;
   }
+  
   .transp-box *, .transp-box h2, .transp-box a {
     font-size: 1.5em;
   }
+  
   .reviews, .upgrades {
     width: 45%;
     margin: auto;
@@ -261,6 +262,7 @@ header {
   .box div {
     padding: .5em;
   }
+  
   .reviews {
     order: 4;
   }
