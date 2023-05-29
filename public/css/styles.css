@@ -181,6 +181,11 @@ header {
   width: 100%;
 }
 
+/* vehicle detail Section */
+.bold {
+  font-weight: bold;
+}
+
 @media screen and (min-width: 500px) {
 
   html {

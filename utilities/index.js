@@ -52,8 +52,28 @@ Util.buildClassificationGrid = async function(data){
     })
     grid += '</ul>'
   } else {
-    grid += '<p class="notice"> Sorry, no matching vehicels could be found.</p>'
+    grid += '<p class="notice"> Sorry, no matching vehicles could be found.</p>'
   }
+  return grid
+}
+
+/* *************************
+* Build Model Grid
+****************************/
+Util.buildModelGrid = async function(data){ 
+  const vehicle = data[0]
+  let grid = '<div id="vehicle-cont">' 
+  grid += '<img src="' + vehicle.inv_image + '"/>'
+  grid += '<div id="detail-cont">'
+  grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + " Details" + '</h2>'
+  grid += '<ul id="vehicle-details">'
+  grid += '<li>' + '<span class="bold">' + "Price: " + '</span>' + "$" + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</li>'
+  grid += '<li>' + '<span class="bold">' + "Description: " + '</span>' + vehicle.inv_description + '</li>'
+  grid += '<li>' + '<span class="bold">' + "Color: " + '</span>' + vehicle.inv_color + '</li>'
+  grid += '<li>' + '<span class="bold">' + "Miles: " + '</span>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</li>'
+  grid += '</ul>'
+  grid += '</div>'
+  grid += '</div>'
   return grid
 }
 

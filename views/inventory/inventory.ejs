@@ -1,0 +1,12 @@
+<%# Inventory classification heading %>
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%# To display a custom dynamic message %>
+    <%# messages() %>
+    
+    <%# Display inventory grid %>
+    <%- grid %>
