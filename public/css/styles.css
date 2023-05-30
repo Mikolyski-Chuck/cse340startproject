@@ -35,6 +35,10 @@ ul {
   list-style-type: none;
 }
 
+#class-h1 {
+  width: 100%;
+}
+
 /*navigation*/
 nav {
   margin: 0;
