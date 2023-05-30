@@ -35,7 +35,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id
       + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
-      + 'details"><img src="' + vehicle.inv_thumbnail
+      + ' details"><img src="' + vehicle.inv_thumbnail
       + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
       + ' on CSE Motors"></a>'
       grid += '<div class="namePrice">'
@@ -62,7 +62,7 @@ Util.buildClassificationGrid = async function(data){
 ****************************/
 Util.buildModelGrid = async function(data){ 
   const vehicle = data[0]
-  let grid = '<div id="vehicle-cont">' 
+  let grid = '<section id="vehicle-cont">' 
   grid += '<img src="' + vehicle.inv_image + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
   + ' on CSE Motors">'
   grid += '<div id="detail-cont">'
@@ -74,7 +74,7 @@ Util.buildModelGrid = async function(data){
   grid += '<li>' + '<span class="bold">' + "Miles: " + '</span>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</li>'
   grid += '</ul>'
   grid += '</div>'
-  grid += '</div>'
+  grid += '</section>'
   return grid
 }
 
