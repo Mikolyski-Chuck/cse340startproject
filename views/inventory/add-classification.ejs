@@ -1,0 +1,33 @@
+<%# Add classification heading %>
+<% if (title) { %>
+    <h1 class="title-h1"><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%# To display a custom dynamic message %>
+    <%- messages() %>
+
+    <%# To display dynamic error messages %>
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+            <li>* <%= error.msg %></li>
+            <% }) %>
+        </ul>
+        <% } %>
+
+    <section class="form-cont" id="addclass-form-cont">
+        <h2>Add a New Classification</h2>
+        <form id="addclass-form" action="/inv/add-classification" method="post">
+            <label for="classification_name">New Classification</label><br><input 
+                type="text" 
+                name="classification_name" 
+                id="classification_name" 
+                required
+                pattern="[a-zA-Z]+"
+            > <br>
+            <p class="instruct-p">Classification must only contain alphabetic characters.</p>
+            <button type="submit" id="add-class-sub">Add Classification</button>
+        </form>
+    </section>

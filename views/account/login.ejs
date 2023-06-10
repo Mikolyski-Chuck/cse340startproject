@@ -1,0 +1,43 @@
+<% if (title) { %>
+    <h1 class="title-h1"><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+            <li>* <%= error.msg %></li>
+            <% }) %>
+        </ul>
+        <% } %>
+    
+<section class="form-cont">
+    <h2>User Login</h2>
+    <form id="login-form" action="/account/login" method="post">
+        <label for="email">Email:</label><br><input 
+            type="email" 
+            name="account_email" 
+            id="email"  
+            required 
+            value="<%= locals.account_email %>"
+        > <br>
+        <label for="password">Password:</label><br><input 
+            type="password" 
+            name="account_password" 
+            id="password" 
+            required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        > <br>
+        <button type="submit" id="login-sub">Login</button>
+        <div id="no-account-cont">
+            <p>No account?</p>
+            <a href="/account/register">Sign-Up</a>
+        </div>
+    </form>
+
+</section>
+
+    

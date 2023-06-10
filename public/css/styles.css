@@ -173,6 +173,7 @@ header {
 
 .box div {
   background-color: var(--secondary-color);
+  min-width: 5em;
   
 }
 
@@ -256,9 +257,101 @@ header {
 }
 
 
-/* error */
-#error-title {
+.title-h1 {
   width: 100%;
+}
+
+/* management */
+.management-link {
+  width: 100%;
+  padding: 1em;
+}
+
+/* forms */
+
+form input, form textarea, form select {
+  width: 100%;
+  font-size: 1.25em;
+  margin: 0;
+  margin-bottom: .75em;
+  padding: 0;
+}
+
+form {
+  background-color: royalblue;
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border:2px solid black;
+  
+}
+
+.form-cont {
+  min-height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-color: skyblue;
+  color: white;
+}
+
+.form-cont h2{
+  color: var(--primary-color)
+}
+form a {
+  color: white;
+  margin-bottom: 1em;
+}
+
+form button {
+  padding: .5em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border-radius: 1.5em;
+  cursor: pointer;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-color: white;
+  background-color: white;
+}
+
+#no-account-cont {
+  display: flex;
+  flex-flow: row;
+}
+
+#no-account-cont * {
+  margin: auto;
+}
+
+form input:invalid, form textarea:invalid, form select:invalid {
+  border: 2px solid red;
+}
+
+form input:focus:invalid, form textarea:focus:invalid, form select:focus:invalid {
+  background-color: lightcoral;
+}
+
+form input:focus:valid, form textarea:focus:valid, form select:focus:valid {
+  background-color: lightgreen;
+}
+
+
+form input:valid, form textarea:valid, form select:valid {
+  border: 2px solid green;
+}
+
+form textarea {
+  font-size: .75em;
+}
+
+/* error */
+.notice {
+  font-size: 1em;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 500px) {
@@ -284,12 +377,15 @@ header {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content: center;
   }
 
   nav ul {
     display: flex;
     flex-flow: row;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     margin: 0;
   }
@@ -348,7 +444,7 @@ header {
 
   .upgrades {
     order: 3;
-    margin-left: 0;;
+    margin-left: 0;
   }
 
   .box {
@@ -400,7 +496,46 @@ header {
     width: 50%;
   }
 
+  form {
+    width: 90%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
+  }
+
+  form * {
+    margin-left: 1em;
+  }
+
+  form input, form textarea, form select {
+    width: 80%;
+    margin-left: 1em;
+    font-size: 1em;
+  }
+
+  .form-cont {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: .75em;
+    width: 80%;
+  }
+
+  #no-account-cont p {
+    margin: 0;
+  }
+
+  #no-account-cont a {
+    margin-left: 1em;
+  }
+
+  .instruct-p {
+    font-size: .75em;
+    margin-top: 0;
+  }
+
 }
+
+
 
 @media screen and (min-width: 850px) {
   
@@ -416,8 +551,8 @@ header {
 
   nav ul {
     width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin:0;
+    margin-left: 0;
   }
 
   nav ul li {
@@ -426,5 +561,13 @@ header {
 
   .box {
     width: 60%;
+  }
+
+  form input, form textarea, form select {
+    width: 50%;
+  }
+
+  .transp-box {
+    font-size: .75em;
   }
 }

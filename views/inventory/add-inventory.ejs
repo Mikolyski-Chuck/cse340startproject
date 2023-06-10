@@ -1,0 +1,112 @@
+<%# Add inventory heading %>
+<% if (title) { %>
+    <h1 class="title-h1"><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%# To display a custom dynamic message %>
+    <%- messages() %>
+
+    <%# To display dynamic error messages %>
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+            <li>* <%= error.msg %></li>
+            <% }) %>
+        </ul>
+        <% } %>
+
+    <section class="form-cont">
+        <h2>Add Vehicle to Inventory</h2>
+        
+        <form id="addinv-form" action="/inv/add-inventory" method="post">
+            <p>All form fields are required.</p>
+            <label for="inv_make">Vehicle Make</label><br><input 
+                type="text" 
+                name="inv_make" 
+                id="inv_make" 
+                required
+                pattern="[a-zA-Z]+"
+                autofocus
+                value="<%= locals.inv_make %>"
+                placeholder="Min 3 letters"
+                minlength="3"
+            > <br>
+            <label for="inv_model">Vehicle Model</label><br><input 
+                type="text" 
+                name="inv_model" 
+                id="inv_model" 
+                required
+                pattern="[a-zA-Z0-9]+"
+                value="<%= locals.inv_model %>"
+                placeholder="Min 3 characters digits and letters"
+                minlength="2"
+            > <br>
+            <label for="inv_year">Vehicle Year</label><br><input 
+                type="text" 
+                name="inv_year" 
+                id="inv_year" 
+                required
+                pattern="[0-9]+"
+                maxlength="4"
+                minlength="4"
+                title="Vehicle year must consist of 4 numbers."
+                value="<%= locals.inv_year %>"
+                placeholder="4-digit year"
+            > <br>
+            <label for="inv_description">Vehicle Description</label><br><textarea  
+                name="inv_description" 
+                id="inv_description" 
+                required
+                rows="4" 
+                cols="50"
+                maxlength="200"
+            ><%= locals.inv_description %></textarea><br>
+            <label for="inv_image">Vehicle Image</label><br><input 
+                type="text" 
+                name="inv_image" 
+                id="inv_image" 
+                value="/images/vehicles/no-image.png"
+                required
+            > <br>
+            <label for="inv_thumbnail">Vehicle Thumbnail Image</label><br><input 
+                type="text" 
+                name="inv_thumbnail" 
+                id="inv_thumbnail" 
+                value="/images/vehicles/no-image-tn.png"
+                required
+            > <br>
+            <label for="inv_price">Vehicle Price</label><br><input 
+                type="text" 
+                name="inv_price" 
+                id="inv_price" 
+                required
+                pattern="[0-9]+"
+                value="<%= locals.inv_price %>"
+                placeholder="Integer"
+            > <br>
+            <label for="inv_miles">Vehicle Miles</label><br><input 
+                type="text" 
+                name="inv_miles" 
+                id="inv_miles" 
+                required
+                pattern="[0-9]+"
+                value="<%= locals.inv_miles %>"
+                placeholder="Integer"
+            > <br>
+            <label for="inv_color">Vehicle Color</label><br><input 
+                type="text" 
+                name="inv_color" 
+                id="inv_color" 
+                required
+                value="<%= locals.inv_color %>"
+                placeholder="Min 3 characters"
+            > <br>
+            <label for="classification_id">Vehicle Classification</label><br>
+            <%- select %>
+             <br>
+            
+            <button type="submit" id="add-inventory-sub">Add Inventory</button>
+        </form>
+    </section>
