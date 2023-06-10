@@ -84,6 +84,7 @@ invCont.addClassification = async function (req, res) {
         res.status(501).render("./inventory/add-classification", {
             title: "Add Classification",
             nav,
+            errors:null,
             
         })
     }
@@ -122,7 +123,7 @@ invCont.addInventory = async function (req, res) {
         inv_price, 
         inv_miles, 
         inv_color, 
-        classification_id
+        classification_id,
         )
 
     if (addInventoryRes) {
@@ -133,7 +134,6 @@ invCont.addInventory = async function (req, res) {
         res.status(201).render("./inventory/management", {
             title: "Inventory Management",
             nav,
-            select,
             errors: null,
         })
     } else {
@@ -143,6 +143,8 @@ invCont.addInventory = async function (req, res) {
         res.status(501).render("./inventory/add-inventory", {
             title: "Add Inventory",
             nav,
+            select,
+            errors: null,
             
         })
     }
