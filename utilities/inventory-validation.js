@@ -135,7 +135,7 @@ validate.checkAddInventoryData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        const select = await utilities.getClassificationToAdd()
+        const select = await utilities.getClassificationToAdd(classification_id)
         res.render("./inventory/add-inventory", {
             errors,
             title: "Add Inventory",
@@ -156,4 +156,35 @@ validate.checkAddInventoryData = async (req, res, next) => {
     next()
 }
 
+/* *********************
+ * Check data and return errors or continue to update inventory
+ * ********************* */
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        const select = await utilities.getClassificationToAdd(classification_id)
+        res.render("./inventory/edit-inventory", {
+            errors,
+            title: "Add Inventory",
+            nav,
+            select,
+            inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color, 
+            classification_id,
+            inv_id
+        })
+    return
+    }
+    next()
+}
 module.exports = validate

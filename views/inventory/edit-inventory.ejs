@@ -1,4 +1,4 @@
-<%# Add inventory heading %>
+<%# Edit inventory heading %>
 <% if (title) { %>
     <h1 class="title-h1"><%= title %></h1>
     <% } else {
@@ -20,7 +20,7 @@
     <section class="form-cont">
         <h2>Add Vehicle to Inventory</h2>
         
-        <form id="addinv-form" action="/inv/add-inventory" method="post">
+        <form id="update-inv-form" action="/inv/update" method="post">
             <p>All form fields are required.</p>
             <label for="inv_make">Vehicle Make</label><br><input 
                 type="text" 
@@ -100,12 +100,17 @@
                 name="inv_color" 
                 id="inv_color" 
                 required
-                 value="" 
+                value="<%= locals.inv_color %>" 
                 placeholder="Min 3 characters"
             > <br>
             <label for="classification_id">Vehicle Classification</label><br>
             <%- select %>
              <br>    
-            <button type="submit" id="add-inventory-sub">Add Inventory</button>
+            <button type="submit" id="update-inventory-sub" disabled>Update Vehicle</button>
+            <input type="hidden" name="inv_id"
+            <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
         </form>
     </section>
+
+    <script src="../../js/inv-update.js"></script>

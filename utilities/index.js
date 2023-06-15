@@ -27,16 +27,23 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* *************************
- * Constrsucts the select options for the add invetory form
+ * Constructs the select options for the add invetory form
  *************************** */
-Util.getClassificationToAdd = async function (req, res, next) {
+Util.getClassificationToAdd = async function (selectedClassification, req, res, next) {
   let data = await invModel.getClassifications()
+  
   let list = '<select name="classification_id" id="classification_id" required>'
   list += '<option value="">Select Classification</option>'
   data.rows.forEach((row) => {
-    list += '<option value="'+ row.classification_id + '">' + row.classification_name +'</option>'
-    });
-  list += '</select>'
+    let selected = ""
+    if (selectedClassification == row.classification_id) {
+      selected = "selected"
+    }
+    list += '<option value="' + row.classification_id + '" ' + selected + '>' + row.classification_name + '</option>';
+  });   
+
+
+    list += '</select>'
   return list
 }
 
@@ -124,4 +131,15 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
+/*********************
+ * Check Login
+ *********************/
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
 module.exports = Util
