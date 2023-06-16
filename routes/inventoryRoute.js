@@ -39,7 +39,7 @@ router.post(
 //route to get management JSON
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-//route get build edit inventory view
+//route to build edit inventory view
 router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildInventoryEditView))
 
 // Process the update inventory
@@ -47,5 +47,11 @@ router.post("/update/",
 classificationAndInventoryValidate.addInventoryRules(),
 classificationAndInventoryValidate.checkUpdateData,
 utilities.handleErrors(invController.updateInventory))
+
+//route to build delete inventory view
+router.get("/delete/:inventoryId", utilities.handleErrors(invController.buildInventoryDeleteView))
+
+//Process the delete inventory
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

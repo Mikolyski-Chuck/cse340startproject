@@ -1,4 +1,5 @@
 const form = document.querySelector("#update-inv-form")
+const updateBtn = document.querySelector("#update-inventory-sub")
 const formData = new FormData(document.forms[0])
 formArray = []
 formData.forEach(function(value) {
@@ -7,13 +8,20 @@ formData.forEach(function(value) {
 
 
 form.addEventListener("change", function () {
-    const updateBtn = document.querySelector("#update-inventory-sub")  
-        //console.log(form[0].value)
-        //console.log(formArray[0])
+    function checkForm() {
     for ( let i = 0; i < form.length-2; i++) {
-            if (form[i].value != formArray[i])
-            //console.log(form[i].value + " is different")
-            updateBtn.removeAttribute("disabled")
-        }    
-        
+            if (form[i].value != formArray[i]) {
+            return true;
+            } 
+        }
+        return false;
+    }
+
+    if (checkForm()) {
+        updateBtn.removeAttribute("disabled")
+    } 
+    else if (!checkForm()) {
+        updateBtn.setAttribute("disabled", "disabled")
+    }
+
     })

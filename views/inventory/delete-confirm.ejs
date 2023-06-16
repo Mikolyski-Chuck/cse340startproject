@@ -1,4 +1,4 @@
-<%# Add inventory heading %>
+<%# Delete inventory heading %>
 <% if (title) { %>
     <h1 class="title-h1"><%= title %></h1>
     <% } else {
@@ -18,10 +18,10 @@
         <% } %>
 
     <section class="form-cont">
-        <h2>Add Vehicle to Inventory</h2>
+        <h2>Delete Vehicle from Inventory</h2>
         
-        <form id="addinv-form" action="/inv/add-inventory" method="post">
-            <p>All form fields are required.</p>
+        <form id="delete-inv-confirm" action="/inv/delete" method="post">
+            <p>Confirm Deletion - The delete is permanent.</p>
             <label for="inv_make">Vehicle Make</label><br><input 
                 type="text" 
                 name="inv_make" 
@@ -55,28 +55,6 @@
                 value="<%= locals.inv_year %>"
                 placeholder="4-digit year"
             > <br>
-            <label for="inv_description">Vehicle Description</label><br><textarea  
-                name="inv_description" 
-                id="inv_description" 
-                required
-                rows="4" 
-                cols="50"
-                maxlength="200"
-            ><%= locals.inv_description %></textarea><br>
-            <label for="inv_image">Vehicle Image</label><br><input 
-                type="text" 
-                name="inv_image" 
-                id="inv_image" 
-                value="/images/vehicles/no-image.png"
-                required
-            > <br>
-            <label for="inv_thumbnail">Vehicle Thumbnail Image</label><br><input 
-                type="text" 
-                name="inv_thumbnail" 
-                id="inv_thumbnail" 
-                value="/images/vehicles/no-image-tn.png"
-                required
-            > <br>
             <label for="inv_price">Vehicle Price</label><br><input 
                 type="text" 
                 name="inv_price" 
@@ -85,27 +63,11 @@
                 pattern="[0-9]+"
                 value="<%= locals.inv_price %>"
                 placeholder="Integer"
-            > <br>
-            <label for="inv_miles">Vehicle Miles</label><br><input 
-                type="text" 
-                name="inv_miles" 
-                id="inv_miles" 
-                required
-                pattern="[0-9]+"
-                value="<%= locals.inv_miles %>"
-                placeholder="Integer"
-            > <br>
-            <label for="inv_color">Vehicle Color</label><br><input 
-                type="text" 
-                name="inv_color" 
-                id="inv_color" 
-                required
-                value="<%= locals.inv_color %>" 
-                placeholder="Min 3 characters"
-            > <br>
-            <label for="classification_id">Vehicle Classification</label><br>
-            <%- select %>
-             <br>    
-            <button type="submit" id="add-inventory-sub">Add Inventory</button>
+            > <br>    
+            <button type="submit" id="delete-inventory-sub">Delete</button>
+            <input type="hidden" name="inv_id"
+            <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
         </form>
     </section>
+
