@@ -27,28 +27,28 @@
                 name="inv_make" 
                 id="inv_make" 
                 readonly 
-                <% if(locals.inv_make) {%> value="<%= locals.inv_make %>" > <% } %>
+                <% if(locals.inv_make) {%> value="<%= locals.inv_make %>" <% } %>
             > <br>
             <label for="inv_model">Vehicle Model</label><br><input 
                 type="text" 
                 name="inv_model" 
                 id="inv_model" 
                 readonly 
-                <% if(locals.inv_make) {%> value="<%= locals.inv_make %>" > <% } %>
+                <% if(locals.inv_model) {%> value="<%= locals.inv_model %>"  <% } %>
             > <br>
             <label for="inv_year">Vehicle Year</label><br><input 
                 type="text" 
                 name="inv_year" 
                 id="inv_year" 
                 readonly 
-                <% if(locals.inv_make) {%> value="<%= locals.inv_make %>" > <% } %>
+                <% if(locals.inv_year) {%> value="<%= locals.inv_year %>" <% } %>
             > <br>
             <label for="inv_price">Vehicle Price</label><br><input 
                 type="text" 
                 name="inv_price" 
                 id="inv_price" 
                 readonly 
-                <% if(locals.inv_make) {%> value="<%= locals.inv_make %>" > <% } %>
+                <% if(locals.inv_price) {%> value="<%= locals.inv_price %>" <% } %>
             > <br>    
             <button type="submit" id="delete-inventory-sub">Delete</button>
             <input type="hidden" name="inv_id"
