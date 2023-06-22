@@ -31,7 +31,6 @@ Util.getNav = async function (req, res, next) {
  *************************** */
 Util.getClassificationToAdd = async function (selectedClassification, req, res, next) {
   let data = await invModel.getClassifications()
-  
   let list = '<select name="classification_id" id="classification_id" required>'
   list += '<option value="">Select Classification</option>'
   data.rows.forEach((row) => {
@@ -84,7 +83,7 @@ Util.buildClassificationGrid = async function(data){
 * Build Model Grid
 ****************************/
 Util.buildModelGrid = async function(data){ 
-  const vehicle = data[0]
+  const vehicle = data
   let grid = '<section id="vehicle-cont">' 
   grid += '<img src="' + vehicle.inv_image + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
   + ' on CSE Motors">'
@@ -142,4 +141,31 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
+
+/****************
+ * Check if an account is already logged in
+ ****************/
+Util.checkIfLoggedIn = (req, res, next) => {
+  if (res.locals.loggedin) {
+    req.flash("notice", "An account is already logged in. Please log out before logging in with another account.")
+    return res.redirect("/account")
+  } else {
+    next()
+  }
+}
+
+/*****************
+ * Middleware to check account type
+ *****************/
+Util.checkAccountType = (req, res, next) => {
+  const accountType = res.locals.accountData.account_type
+  if (accountType == "Client") { 
+  req.flash("notice", "Access denied")
+    return res.redirect("/account/login")
+  } else {
+    next()
+  }
+
+}
+
 module.exports = Util

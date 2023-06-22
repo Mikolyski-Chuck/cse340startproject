@@ -31,6 +31,9 @@ h2 {
   font-size: 1em;
 }
 
+h3 {
+  font-size:.9em;
+}
 ul {
   list-style-type: none;
 }
@@ -275,6 +278,11 @@ header {
   width: 100%;
 }
 
+#account-manage-cont {
+  display: flex;
+  flex-direction: column;
+}
+
 /* forms */
 
 form input, form textarea, form select {
@@ -356,12 +364,24 @@ form textarea {
   font-size: .75em;
 }
 
+#update-password {
+  margin-top: 1em;
+}
+
 /* error */
 .notice {
   font-size: 1em;
   margin-right: auto;
 }
 
+/* messages */
+#messages {
+  width: 100%;
+}
+
+#messages ul {
+padding-left: 0;
+}
 
 /* table */
 table {

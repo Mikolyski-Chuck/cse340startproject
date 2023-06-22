@@ -27,7 +27,7 @@ invCont.buildByModelId = async function (req, res, next) {
     const data = await invModel.getModelById(model_id)
     const grid = await utilities.buildModelGrid (data)
     let nav = await utilities.getNav()
-    const vehicle = data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model
+    const vehicle = data.inv_year + " " + data.inv_make + " " + data.inv_model
     res.render("./inventory/inventory.ejs", {
         title: vehicle,
         nav,
@@ -106,10 +106,8 @@ invCont.buildAddInventory = async function (req, res, next) {
  ***********************/
 invCont.addInventory = async function (req, res) {
     let nav = await utilities.getNav()
-    const selectedClassification = res.locals.classification_id
-    const select = await utilities.getClassificationToAdd(selectedClassification)
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
-    
+    const select = await utilities.getClassificationToAdd(classification_id)
     
     const addInventoryRes = await invModel.addInventory(
         inv_make, 
@@ -139,7 +137,16 @@ invCont.addInventory = async function (req, res) {
             nav,
             select,
             errors: null,
-            
+            inv_make, 
+            inv_model, 
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id
         })
     }
 }
@@ -190,8 +197,6 @@ invCont.buildInventoryEditView = async function (req, res, next) {
  ***********************/
 invCont.updateInventory = async function (req, res) {
     let nav = await utilities.getNav()
-    const selectedClassification = res.locals.classification_id
-    //const select = await utilities.getClassificationToAdd(selectedClassification)
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id } = req.body
     
     
