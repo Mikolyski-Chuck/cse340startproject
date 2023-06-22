@@ -26,6 +26,8 @@ utilities.handleErrors(invController.buildAddClassification))
 //Process the classification data
 router.post(
     "/add-classification",
+    utilities.checkLogin,
+    utilities.checkAccountType,
     classificationAndInventoryValidate.addClassificationRules(),
     classificationAndInventoryValidate.checkAddClassificationData,
     utilities.handleErrors(invController.addClassification)
@@ -40,13 +42,18 @@ utilities.handleErrors(invController.buildAddInventory))
 //Process the add inventory data
 router.post(
     "/add-inventory",
+    utilities.checkLogin,
+    utilities.checkAccountType,
     classificationAndInventoryValidate.addInventoryRules(),
     classificationAndInventoryValidate.checkAddInventoryData,
     utilities.handleErrors(invController.addInventory)
     )
 
 //route to get management JSON
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", 
+utilities.checkLogin,
+utilities.checkAccountType,
+utilities.handleErrors(invController.getInventoryJSON))
 
 //route to build edit inventory view
 router.get("/edit/:inventoryId", 
@@ -56,6 +63,8 @@ utilities.handleErrors(invController.buildInventoryEditView))
 
 // Process the update inventory
 router.post("/update/", 
+utilities.checkLogin,
+utilities.checkAccountType,
 classificationAndInventoryValidate.addInventoryRules(),
 classificationAndInventoryValidate.checkUpdateData,
 utilities.handleErrors(invController.updateInventory))
@@ -67,6 +76,9 @@ utilities.checkAccountType,
 utilities.handleErrors(invController.buildInventoryDeleteView))
 
 //Process the delete inventory
-router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
+router.post("/delete/", 
+utilities.checkLogin,
+utilities.checkAccountType,
+utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

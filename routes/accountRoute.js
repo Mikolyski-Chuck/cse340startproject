@@ -34,9 +34,10 @@ router.post(
     utilities.handleErrors(accController.accountLogin)
     )
 
-
 //Process the log out request 
-router.get("/logout", utilities.handleErrors(accController.logOutAccount))
+router.get("/logout", 
+utilities.checkLogin,
+utilities.handleErrors(accController.logOutAccount))
 
 //route to build account update view
 router.get("/update/:accountId", 

@@ -164,7 +164,7 @@ async function updateAccount(req, res, next) {
 
     if (updateResult) {
         req.flash(
-            "message-cont",
+            "notice",
             "Account successfully updated."
             )
             res.clearCookie("jwt")
@@ -178,7 +178,7 @@ async function updateAccount(req, res, next) {
                     res.redirect("/account/")
                 
             }catch (error) {
-                throw new Error('Access Forbidden')
+                throw new Error('Unable to Process account update at this time. Try back later.')
             }
         }
     } else {
