@@ -170,12 +170,11 @@ invCont.getInventoryJSON = async (req, res, next) => {
 invCont.buildInventoryEditView = async function (req, res, next) {
     const inv_id = parseInt(req.params.inventoryId)
     let nav = await utilities.getNav()
-    //const selectedClassification = res.locals.classification_id
     const itemData = await invModel.getModelById(inv_id)
     const select = await utilities.getClassificationToAdd(itemData.classification_id)
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`
     res.render("./inventory/edit-inventory", {
-        title: "Edit " + itemName,
+        title: "Edit Inventory",
         nav,
         select,
         errors: null,

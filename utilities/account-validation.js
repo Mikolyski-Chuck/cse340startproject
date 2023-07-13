@@ -85,13 +85,14 @@ validate.loginRules = () => {
         
         //password is required and must exist.
         body("account_password")
+        .trim()
         .isLength({min: 1})
         .withMessage("Please enter a password."),
     ]
 }
 
 /* *********************
- * Check data and return errors or continue to registration
+ * Check data and return errors or continue to login
  * ********************* */
 validate.checkLoginData = async (req, res, next) => {
     const { account_email } = req.body
@@ -141,7 +142,7 @@ validate.updateRules = () => {
         .withMessage("A valid email is required.")
         .custom(async (account_email, {req}) => {
             const currentAccount = await accModel.getAccountById(req.body.account_id)
-            if (currentAccount.account_email != account_email) {
+            if (account_email != currentAccount.account_email) {
                 const emailExists = await accModel.checkExistingEmail(account_email)
             if (emailExists){
                 throw new Error("Email already exists under a different account.")

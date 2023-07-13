@@ -2,6 +2,7 @@ const invModel = require("../models/inventory-model")
 const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
+const accModel = require("../models/account-model")
 
 /* *************************
  * Constrsucts the nav HTML unordered list
@@ -166,6 +167,110 @@ Util.checkAccountType = (req, res, next) => {
     next()
   }
 
+}
+
+/******************
+ * Check if messages are unread
+*******************/
+Util.checkIfUnread = async function(messages) {
+  let unreadMessages = []  
+  messages.forEach(message => {
+      if (!message.message_read) {
+          unreadMessages.push(message)
+        }
+    })
+    return unreadMessages
+  }
+
+  /******************
+ * Check if messages are archived
+*******************/
+Util.checkIfArchived = async function(messages) {
+  let archivedMessages = []  
+  messages.forEach(message => {
+        if(message.message_archived) {
+          archivedMessages.push(message)
+        }
+    })
+    return archivedMessages
+  }
+
+/****************
+ * Build inbox table
+ ****************/
+  Util.buildInboxTable = async function(messages) {
+    
+    // Set up the table labels
+    let dataTable = '<table id="inbox">'
+    dataTable += '<thead>'
+    dataTable += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
+    dataTable += '</thead>'
+    
+    // Set up the table body
+    dataTable += '<tbody>'
+  
+    // Iterate over all the messages in the array and put each in a row
+    for (let message of messages) {
+      let date = new Date(message.message_created)
+      let formattedDate = date.toLocaleDateString();
+      let formattedTime = date.toLocaleTimeString([],{ hour: 'numeric', minute: '2-digit', hour12: true })
+    dataTable += '<tr>'
+    dataTable += `<td>${formattedDate} ${formattedTime}</td>`
+    dataTable += `<td><a href="/message/read/${message.message_id}" title="Click to view message">${message.message_subject}</a></td>`
+    dataTable += `<td>${message.message_from_firstname} ${message.message_from_lastname}</td>`
+    dataTable += `<td>${message.message_read}</td>`
+    dataTable += '</tr>'
+    };
+    
+    dataTable += '</tbody>'
+    dataTable += '</table>'
+    
+    return dataTable;
+    }
+
+/****************
+ * Build message view
+ ****************/
+  Util.buildMessage = async function(message) {
+    const date = new Date(message.message_created)
+    const formattedDate = date.toLocaleDateString();
+    const formattedTime = date.toLocaleTimeString([],{ hour: 'numeric', minute: '2-digit', hour12: true });
+    let messageInfo = "<ul>" 
+    messageInfo += `<li class="bold">Subject: <span class="no-bold">${message.message_subject}</span></li>`
+    messageInfo += `<li class="bold">From: <span class="no-bold">${message.message_from_firstname} ${message.message_from_lastname}</span></li>`
+    messageInfo += `<li class="bold">Sent: <span class="no-bold">${formattedDate} ${formattedTime}</span></li>`
+    messageInfo += `<li class="bold">Message: <p class="no-bold" id="message_body">${message.message_body}</p></li>`
+    messageInfo += "</ul>"
+    return messageInfo
+    }
+/*****************
+* Build account select
+******************/
+Util.getAccountToAdd = async function (selectedAccount) {
+  let data = await accModel.getAccounts()
+  let list = '<select name="message_to" id="message_to" required>'
+  list += '<option value="">Select Account</option>'
+  data.rows.forEach((row) => {
+    let selected = ""
+    if (selectedAccount == row.account_id) {
+      selected = "selected"
+    }
+    list += '<option value="' + row.account_id + '" ' + selected + '>' + row.account_firstname + " " + row.account_lastname + '</option>';
+  });   
+    list += '</select>'
+  return list
+}
+
+/*****************
+* Build account select for reply
+******************/
+Util.getAccountForReply = async function (selectedAccount) {
+  let data = await accModel.getAccountById(selectedAccount)
+  let list = '<select name="message_to" id="message_to" required>'
+  const selected = "selected"
+  list += '<option value="' + data.account_id + '" ' + selected + '>' + data.account_firstname + " " + data.account_lastname + '</option>';
+  list += '</select>'
+  return list
 }
 
 module.exports = Util

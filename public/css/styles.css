@@ -42,6 +42,34 @@ ul {
   width: 100%;
 }
 
+.no-bold {
+  font-weight: normal;
+}
+
+button{
+  border: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.success {
+  background-color: lightgreen;
+}
+
+.failure, .error {
+  background-color: lightcoral;
+}
+
+.error {
+  width: 100%;
+}
+
+a {
+  color: black;
+}
+
 /*navigation*/
 nav {
   margin: 0;
@@ -372,6 +400,7 @@ form textarea {
 .notice {
   font-size: 1em;
   margin-right: auto;
+  width: 100%;
 }
 
 /* messages */
@@ -399,6 +428,43 @@ table td {
 
 table th {
   border-bottom: 2px solid #000;
+}
+
+/* message system */
+.message-section {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+#inbox-options{
+  width: 100%;
+  }
+
+.inbox-options {
+border-top: 4px solid black;
+}
+
+#inbox {
+  margin-left:auto;
+  margin-right: auto;
+}
+.message-action-btn {
+  width: auto;
+  padding: .2em;
+  border: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: none;
+}
+
+.message-action-btn button {
+  margin: 0;
+  background-color: gray;
+}
+
+#message_body {
+  white-space: pre-wrap;
 }
 
 @media screen and (min-width: 500px) {
@@ -621,8 +687,12 @@ table {
     width: 60%;
   }
 
-  form input, form textarea, form select {
+  form input, form select {
     width: 50%;
+  }
+
+  form textarea {
+    width:80%;
   }
 
   .transp-box {

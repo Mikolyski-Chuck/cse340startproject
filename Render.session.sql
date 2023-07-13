@@ -1,1 +1,1 @@
-SELECT * FROM public.inventory WHERE inv_id = 36
+SELECT i.*, c_to.*, c_from.account_id AS message_from_account_id, c_from.account_firstname AS message_from_firstname, c_from.account_lastname AS message_from_lastname FROM public.message as i JOIN public.account AS c_to ON i.message_to = c_to.account_id JOIN public.account AS c_from ON i.message_from = c_from.account_id WHERE i.message_to = 19 AND message_archived = TRUE ORDER BY i.message_created DESC;

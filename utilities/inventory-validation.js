@@ -168,7 +168,7 @@ validate.checkUpdateData = async (req, res, next) => {
         const select = await utilities.getClassificationToAdd(classification_id)
         res.render("./inventory/edit-inventory", {
             errors,
-            title: "Add Inventory",
+            title: "Edit Inventory",
             nav,
             select,
             inv_make, 

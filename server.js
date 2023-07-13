@@ -62,6 +62,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", require("./routes/inventoryRoute"))
 // Account routes
 app.use("/account", require("./routes/accountRoute"))
+// Message routes
+app.use("/message", require("./routes/messageRoute"))
 
 //500 error route
 app.use("/500error", utilities.handleErrors(baseController.five00error))

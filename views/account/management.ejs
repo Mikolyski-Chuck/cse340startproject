@@ -20,6 +20,17 @@
             <h2>Welcome <%= locals.accountData.account_firstname %></h2>
             
             <a href="/account/update/<%= locals.accountData.account_id %>" title="Click to manage account">Update Account Information</a>
+            <h3>Message Center</h3>
+            <ul id="message-center">
+                <% if (unreadMessage) { %>
+                    <li>You have <%= unreadMessage %> unread message(s). </li>
+               <% } else { %>
+                    <li>There are no unread messages.</li>
+                <% } %>
+                <li> Go to <a href="/message" title="Click to view messages">inbox</a> </li>
+            </ul>
+
+            
             <% if (locals.accountData.account_type != "Client") { %>
             <h3>Inventory Management</h3>
             <p>
