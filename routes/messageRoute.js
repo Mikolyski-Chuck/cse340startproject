@@ -35,6 +35,8 @@ utilities.handleErrors(messController.sendNewMessage))
 //Route to build reply to message view
 router.post("/reply",
 utilities.checkLogin,
+messValidate.checkMessageIdRules(),
+messValidate.checkMessageIdData,
 utilities.handleErrors(messController.buildReplyMessage))
 
 //Route to send the reply message
